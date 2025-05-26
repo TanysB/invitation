@@ -20,7 +20,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
             position: relative;
             overflow: hidden;
         }
@@ -114,7 +114,7 @@
             position: relative;
             width: 100%;
             max-width: 700px;
-            height: 500px;
+            height: 600px;
             perspective: 1200px;
         }
 
@@ -124,7 +124,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             height: 380px;
             cursor: pointer;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -143,12 +143,14 @@
             left: 0;
             right: 0;
             height: 240px;
-            background: linear-gradient(135deg, #c9a876 0%, #b8956a 50%, #a68552 100%);
+            background: linear-gradient(135deg, #8b7355 0%, #7a634a 50%, #6b5540 100%);
+            border: 3px solid #654933;
             border-radius: 8px;
             box-shadow: 
-                0 20px 40px rgba(0,0,0,0.15),
-                0 10px 20px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.1);
+                0 20px 40px rgba(0,0,0,0.25),
+                0 10px 20px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                inset 0 -2px 0 rgba(0,0,0,0.1);
             z-index: 1;
         }
 
@@ -160,10 +162,10 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 15% 25%, rgba(139, 115, 85, 0.1) 1px, transparent 1px),
-                radial-gradient(circle at 85% 75%, rgba(139, 115, 85, 0.1) 1px, transparent 1px);
+                radial-gradient(circle at 15% 25%, rgba(139, 115, 85, 0.15) 2px, transparent 2px),
+                radial-gradient(circle at 85% 75%, rgba(139, 115, 85, 0.15) 2px, transparent 2px);
             background-size: 60px 60px, 80px 80px;
-            border-radius: 8px;
+            border-radius: 5px;
         }
 
         .envelope-flap {
@@ -173,14 +175,14 @@
             transform: translateX(-50%) rotateX(180deg);
             width: 0;
             height: 0;
-            border-left: 300px solid transparent;
-            border-right: 300px solid transparent;
-            border-bottom: 180px solid #a68552;
+            border-left: 250px solid transparent;
+            border-right: 250px solid transparent;
+            border-bottom: 180px solid #654933;
             z-index: 2;
             transform-origin: bottom center;
             transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 
-                0 -5px 15px rgba(0,0,0,0.2),
+                0 -5px 15px rgba(0,0,0,0.3),
                 inset 0 2px 4px rgba(0,0,0,0.1);
         }
 
@@ -190,15 +192,39 @@
 
         .click-hint {
             position: absolute;
-            bottom: -40px;
+            bottom: -50px;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Dancing Script', cursive;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: #2c2416;
-            opacity: 0.8;
+            opacity: 0.9;
             animation: pulse 2s infinite;
             transition: opacity 0.5s ease;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .invitation-click-hint {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: #2c2416;
+            opacity: 0.9;
+            animation: pulse 2s infinite;
+            transition: opacity 0.5s ease;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            z-index: 5;
+        }
+
+        .title-card.show + .invitation-click-hint {
+            opacity: 1;
+        }
+
+        .title-card:not(.show) + .invitation-click-hint {
+            opacity: 0;
         }
 
         .envelope.opened + .click-hint {
@@ -206,7 +232,7 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
+            0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
         }
 
@@ -217,7 +243,7 @@
             left: 50%;
             transform: translate(-50%, -50%) scale(0) rotateY(90deg);
             width: 100%;
-            max-width: 700px;
+            max-width: 500px;
             height: 500px;
             border-radius: 12px;
             box-shadow: 
@@ -258,23 +284,24 @@
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Dancing Script', cursive;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #2c2416;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.95);
             border: 2px solid #8b7355;
-            padding: 10px 25px;
-            border-radius: 25px;
+            padding: 12px 30px;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 10;
             backdrop-filter: blur(5px);
             pointer-events: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .continue-btn:hover {
             background: rgba(255,255,255,1);
             transform: translateX(-50%) scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
         /* Full Invitation */
@@ -284,7 +311,7 @@
             left: 50%;
             transform: translate(-50%, -50%) scale(0) rotateX(90deg);
             width: 100%;
-            max-width: 650px;
+            max-width: 500px;
             border-radius: 12px;
             box-shadow: 
                 0 25px 50px rgba(0,0,0,0.2),
@@ -295,6 +322,7 @@
             overflow: hidden;
             background: linear-gradient(135deg, #d4b896 0%, #c9a876 50%, #b8956a 100%);
             min-height: 600px;
+            position: relative;
         }
 
         .invitation-image {
@@ -315,83 +343,110 @@
 
         .back-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            bottom: 20px;
+            left: 20px;
             font-family: 'Dancing Script', cursive;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #2c2416;
-            background: rgba(255,255,255,0.9);
-            border: 1px solid #8b7355;
-            padding: 8px 15px;
-            border-radius: 20px;
+            background: rgba(255,255,255,0.95);
+            border: 2px solid #8b7355;
+            padding: 12px 20px;
+            border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 10;
             backdrop-filter: blur(5px);
             pointer-events: auto;
-        }
-
-        .back-btn:hover {
-            background: rgba(255,255,255,1);
-            transform: scale(1.05);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10;
         }
 
         .map-btn {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            bottom: 20px;
+            right: 20px;
             font-family: 'Dancing Script', cursive;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #2c2416;
-            background: rgba(255,255,255,0.9);
-            border: 1px solid #8b7355;
-            padding: 8px 15px;
-            border-radius: 20px;
+            background: rgba(255,255,255,0.95);
+            border: 2px solid #8b7355;
+            padding: 12px 20px;
+            border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 10;
             backdrop-filter: blur(5px);
             pointer-events: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10;
         }
 
-        .map-btn:hover {
+        .back-btn:hover, .map-btn:hover {
             background: rgba(255,255,255,1);
             transform: scale(1.05);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .hope-message {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #2c2416;
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            padding: 12px 25px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            animation: gentleBounce 3s ease-in-out infinite;
+            border: 2px solid rgba(139, 115, 85, 0.3);
+        }
+
+        @keyframes gentleBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-3px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-1px);
+            }
         }
 
         .weather-widget {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             background: rgba(212, 184, 150, 0.95);
             border: 2px solid #8b7355;
             border-radius: 12px;
-            padding: 15px;
+            padding: 12px;
             font-family: 'Dancing Script', cursive;
             color: #2c2416;
             z-index: 1000;
             backdrop-filter: blur(5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            max-width: 200px;
+            max-width: 180px;
         }
 
         .weather-header {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-align: center;
         }
 
         .weather-info {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.3;
             text-align: center;
         }
 
         .weather-temp {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: #8b7355;
         }
@@ -404,7 +459,7 @@
 
         .weather-error {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #8b7355;
         }
 
@@ -421,6 +476,7 @@
             align-items: center;
             z-index: 2000;
             backdrop-filter: blur(5px);
+            padding: 20px;
         }
 
         .map-modal.show {
@@ -432,15 +488,17 @@
             border: 3px solid #8b7355;
             border-radius: 12px;
             padding: 20px;
-            max-width: 90%;
-            max-height: 90%;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
             position: relative;
             box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
 
         .map-header {
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #2c2416;
             text-align: center;
             margin-bottom: 15px;
@@ -454,6 +512,7 @@
             cursor: pointer;
             color: #8b7355;
             transition: color 0.3s ease;
+            z-index: 10;
         }
 
         .map-close:hover {
@@ -462,33 +521,83 @@
 
         .map-iframe {
             width: 100%;
-            height: 400px;
+            height: 300px;
             border: 2px solid #8b7355;
             border-radius: 8px;
         }
 
+        /* Mobile Optimizations */
         @media (max-width: 768px) {
-            .map-container {
-                margin: 20px;
-                padding: 15px;
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                height: 100vh;
+                max-height: 700px;
             }
             
-            .map-iframe {
-                height: 300px;
+            .envelope {
+                height: 320px;
+                max-width: 400px;
             }
             
+            .envelope-flap {
+                border-left-width: 200px;
+                border-right-width: 200px;
+                border-bottom-width: 150px;
+                bottom: 200px;
+            }
+            
+            .envelope-body {
+                height: 200px;
+            }
+
+            .click-hint {
+                font-size: 1.2rem;
+                bottom: -40px;
+            }
+            
+            .title-card {
+                height: 450px;
+                max-width: 400px;
+            }
+            
+            .invitation {
+                min-height: 500px;
+                max-width: 400px;
+            }
+
+            .continue-btn {
+                font-size: 1.2rem;
+                padding: 10px 25px;
+            }
+
+            .back-btn {
+                bottom: 15px;
+                left: 15px;
+                font-size: 1.1rem;
+                padding: 10px 18px;
+            }
+
             .map-btn {
-                top: 70px;
-                left: 10px;
-                font-size: 1rem;
-                padding: 6px 12px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 1.1rem;
+                padding: 10px 18px;
+            }
+
+            .hope-message {
+                font-size: 1.2rem;
+                top: 15px;
+                padding: 10px 20px;
             }
 
             .weather-widget {
                 top: 10px;
                 right: 10px;
-                padding: 10px;
-                max-width: 160px;
+                padding: 8px;
+                max-width: 150px;
             }
 
             .weather-header {
@@ -496,41 +605,72 @@
             }
 
             .weather-info {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
 
             .weather-temp {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
+            }
+
+            .map-container {
+                margin: 10px;
+                padding: 15px;
+                max-width: none;
+            }
+            
+            .map-iframe {
+                height: 250px;
+            }
+
+            .map-header {
+                font-size: 1.5rem;
             }
         }
 
-        @media (max-width: 768px) {
-            .container {
-                height: 400px;
-            }
-            
+        /* Extra small screens */
+        @media (max-width: 480px) {
             .envelope {
-                height: 300px;
+                max-width: 350px;
+                height: 280px;
             }
-            
+
             .envelope-flap {
-                border-left-width: 250px;
-                border-right-width: 250px;
-                border-bottom-width: 140px;
-                bottom: 180px;
+                border-left-width: 175px;
+                border-right-width: 175px;
+                border-bottom-width: 130px;
+                bottom: 170px;
             }
             
             .envelope-body {
-                height: 180px;
+                height: 170px;
             }
-            
+
+            .title-card, .invitation {
+                max-width: 350px;
+            }
+
             .title-card {
-                height: 420px;
-                max-width: 650px;
+                height: 400px;
             }
-            
+
             .invitation {
                 min-height: 450px;
+            }
+
+            .back-btn {
+                bottom: 10px;
+                left: 10px;
+            }
+
+            .map-btn {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .hope-message {
+                font-size: 1.1rem;
+                top: 10px;
+                padding: 8px 18px;
             }
         }
     </style>
@@ -566,18 +706,25 @@
         <div class="envelope" id="envelope">
             <div class="envelope-flap"></div>
             <div class="envelope-body"></div>
+            <div class="click-hint">-Click to open invitation-</div>
         </div>
-        <div class="click-hint">Click to open invitation</div>
+        
 
         <!-- Title Card (Image 2) -->
         <div class="title-card" id="titleCard">
-            <img class="title-image" src="2.png" alt="Brittany's 22nd Birthday Title" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #d4b896 0%, #c9a876 50%, #b8956a 100%)'; this.parentNode.innerHTML += '<div style=&quot;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Dancing Script, cursive; color: #2c2416;&quot;><div style=&quot;font-size: 4rem; margin-bottom: 10px;&quot;>Brittanys</div><div style=&quot;font-size: 3rem; margin-bottom: 15px;&quot;>22nd</div><div style=&quot;font-size: 4rem; font-family: Playfair Display, serif; font-weight: 900; letter-spacing: 6px;&quot;>BDAY</div></div>';">
+            <img class="title-image" src="2.png" alt="Brittany's 22nd Birthday Title" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #d4b896 0%, #c9a876 50%, #b8956a 100%)'; this.parentNode.innerHTML += '<div style=&quot;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Dancing Script, cursive; color: #2c2416;&quot;><div style=&quot;font-size: 3.5rem; margin-bottom: 10px;&quot;>Brittanys</div><div style=&quot;font-size: 2.5rem; margin-bottom: 15px;&quot;>22nd</div><div style=&quot;font-size: 3.5rem; font-family: Playfair Display, serif; font-weight: 900; letter-spacing: 4px;&quot;>BDAY</div></div>';">
             <button class="continue-btn" id="continueBtn">View Details</button>
         </div>
+        <div class="invitation-click-hint">Click above to view invitation details</div>
 
         <!-- Full Invitation (Image 3) -->
         <div class="invitation" id="invitation">
-            <img class="invitation-image" src="3.png" alt="Invitation Details" onerror="this.style.display='none'; this.parentNode.innerHTML += '<div style=&quot;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Dancing Script, cursive; color: #2c2416; width: 80%;&quot;><div style=&quot;font-size: 2rem; margin-bottom: 20px;&quot;>When: June 7 - Saturday</div><div style=&quot;font-size: 2rem; margin-bottom: 20px;&quot;>Where: 3061 Fashion Ave, Long Beach, CA 90810</div><div style=&quot;font-size: 2rem; margin-bottom: 20px;&quot;>Time: Start 4:30 P.M, Food 6:30 P.M</div><div style=&quot;font-size: 1.5rem; font-style: italic;&quot;>Mexican Western Attire Encouraged</div></div>';">
+            <img class="invitation-image" src="3.png" alt="Invitation Details" onerror="this.style.display='none'; this.parentNode.innerHTML += '<div style=&quot;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Dancing Script, cursive; color: #2c2416; width: 85%; padding: 20px;&quot;><div style=&quot;font-size: 1.8rem; margin-bottom: 15px;&quot;>When: June 7 - Saturday</div><div style=&quot;font-size: 1.8rem; margin-bottom: 15px;&quot;>Where: 3061 Fashion Ave, Long Beach, CA 90810</div><div style=&quot;font-size: 1.8rem; margin-bottom: 15px;&quot;>Time: Start 4:30 P.M, Food 6:30 P.M</div><div style=&quot;font-size: 1.4rem; font-style: italic; margin-bottom: 20px;&quot;>Mexican Western Attire Encouraged</div></div>';">
+            
+            <div class="hope-message">
+                Hope to see you there
+            </div>
+            
             <button class="back-btn" id="backBtn">← Back</button>
             <button class="map-btn" id="mapBtn">📍 View Map</button>
         </div>
@@ -617,14 +764,14 @@
                 weatherInfo.innerHTML = `
                     <div class="weather-temp">${temp}°F</div>
                     <div>${icon} ${description}</div>
-                    <div style="font-size: 0.9rem; margin-top: 5px;">Long Beach, CA</div>
+                    <div style="font-size: 0.8rem; margin-top: 5px;">Long Beach, CA</div>
                 `;
             } catch (error) {
                 // Fallback weather display
                 weatherInfo.innerHTML = `
                     <div class="weather-temp">72°F</div>
                     <div>☀️ Sunny</div>
-                    <div style="font-size: 0.9rem; margin-top: 5px;">Long Beach, CA</div>
+                    <div style="font-size: 0.8rem; margin-top: 5px;">Long Beach, CA</div>
                     <div class="weather-error">(Estimated)</div>
                 `;
             }
@@ -644,20 +791,35 @@
             return icons[weather] || '🌤️';
         }
 
-        // Map functionality
-        mapBtn.addEventListener('click', function(e) {
+        // Map functionality - Fixed for mobile
+        function openMap(e) {
             e.preventDefault();
             e.stopPropagation();
             mapModal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeMap() {
+            mapModal.classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Add event listeners with proper mobile support
+        mapBtn.addEventListener('click', openMap);
+        mapBtn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            openMap(e);
         });
 
-        mapClose.addEventListener('click', function() {
-            mapModal.classList.remove('show');
+        mapClose.addEventListener('click', closeMap);
+        mapClose.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            closeMap();
         });
 
         mapModal.addEventListener('click', function(e) {
             if (e.target === mapModal) {
-                mapModal.classList.remove('show');
+                closeMap();
             }
         });
 
@@ -668,7 +830,7 @@
         function createParticles() {
             const particleTypes = ['hat', 'cowboy'];
             
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 8; i++) { // Reduced for mobile performance
                 const particle = document.createElement('div');
                 const type = particleTypes[Math.floor(Math.random() * particleTypes.length)];
                 particle.className = `particle ${type}`;
@@ -680,14 +842,12 @@
                 // Stagger animation delays to have continuous floating
                 particle.style.animationDelay = (Math.random() * 20) + 's';
                 
-                const size = Math.random() * 30 + 40; // 40px to 70px
+                const size = Math.random() * 20 + 30; // Smaller for mobile
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
                 particles.appendChild(particle);
             }
-            
-            console.log('Created', particles.children.length, 'particles floating throughout screen');
         }
 
         // Initialize particles
@@ -743,18 +903,20 @@
             }, 300);
         }
 
-        // Add hover effect on envelope
-        envelope.addEventListener('mouseenter', function() {
-            if (currentState === 'envelope') {
-                this.style.transform = 'translate(-50%, -50%) scale(1.02)';
-            }
-        });
+        // Add hover effect on envelope (desktop only)
+        if (!('ontouchstart' in window)) {
+            envelope.addEventListener('mouseenter', function() {
+                if (currentState === 'envelope') {
+                    this.style.transform = 'translate(-50%, -50%) scale(1.02)';
+                }
+            });
 
-        envelope.addEventListener('mouseleave', function() {
-            if (currentState === 'envelope') {
-                this.style.transform = 'translate(-50%, -50%) scale(1)';
-            }
-        });
+            envelope.addEventListener('mouseleave', function() {
+                if (currentState === 'envelope') {
+                    this.style.transform = 'translate(-50%, -50%) scale(1)';
+                }
+            });
+        }
     </script>
 </body>
 </html>
