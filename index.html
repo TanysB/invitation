@@ -64,13 +64,16 @@
 
         .particle.hat {
             background-image: url('hat.png');
-            background-color: rgba(101, 67, 33, 0.1);
+            background-color: rgba(101, 67, 33, 0.3);
+            border-radius: 50%;
         }
 
         .particle.cowboy {
             background-image: url('cowboy.png');
-            background-color: rgba(44, 36, 22, 0.1);
+            background-color: rgba(44, 36, 22, 0.3);
+            border-radius: 50%;
         }
+
 
         .particle:nth-child(odd) {
             animation-duration: 12s;
@@ -202,21 +205,25 @@
             animation: pulse 2s infinite;
             transition: opacity 0.5s ease;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            white-space: nowrap;
         }
 
         .invitation-click-hint {
             position: absolute;
-            bottom: -50px;
+            bottom: -60px;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Dancing Script', cursive;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #2c2416;
-            opacity: 0.9;
+            opacity: 0;
             animation: pulse 2s infinite;
             transition: opacity 0.5s ease;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
             z-index: 5;
+            text-align: center;
+            padding: 0 10px;
+            max-width: 300px;
         }
 
         .title-card.show + .invitation-click-hint {
@@ -278,6 +285,33 @@
             transition: all 0.8s ease;
         }
 
+        .fallback-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            color: #2c2416;
+        }
+
+        .fallback-title .name {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .fallback-title .age {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .fallback-title .bday {
+            font-size: 3.5rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
+
         .continue-btn {
             position: absolute;
             bottom: 30px;
@@ -335,10 +369,108 @@
             border-radius: 12px;
         }
 
+        .fallback-invitation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            color: #2c2416;
+            width: 85%;
+            padding: 20px;
+        }
+
+        .fallback-invitation .info-line {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .fallback-invitation .attire {
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Invitation Overlay - Always visible */
+        .invitation-overlay {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            text-align: center;
+        }
+
+        .attire-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            background: rgba(139, 115, 85, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(139, 115, 85, 0.4);
+        }
+
+        .attire-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #2c2416;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .inspo-btn {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8rem;
+            color: #2c2416;
+            background: rgba(212, 184, 150, 0.9);
+            border: 1px solid #8b7355;
+            padding: 4px 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            font-style: normal;
+            font-weight: 500;
+            z-index: 20;
+            pointer-events: auto;
+            position: relative;
+        }
+
+        .inspo-btn:hover {
+            background: rgba(139, 115, 85, 0.8);
+            color: #ffffff;
+            transform: scale(1.02);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        }
+
         .invitation.show {
             transform: translate(-50%, -50%) scale(1) rotateX(0deg);
             opacity: 1;
             transition-delay: 0.3s;
+        }
+
+        .invitation-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
         }
 
         .back-btn {
@@ -347,17 +479,34 @@
             left: 20px;
             font-family: 'Dancing Script', cursive;
             font-size: 1.2rem;
-            color: #2c2416;
-            background: rgba(255,255,255,0.95);
-            border: 2px solid #8b7355;
+            color: #ffffff;
+            background: linear-gradient(135deg, #8b7355 0%, #7a634a 50%, #6b5540 100%);
+            border: 2px solid #654933;
             padding: 12px 20px;
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             pointer-events: auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 10;
+            box-shadow: 
+                0 4px 15px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            z-index: 15;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.05) 100%);
+            border-radius: 23px;
+            pointer-events: none;
         }
 
         .map-btn {
@@ -366,23 +515,51 @@
             right: 20px;
             font-family: 'Dancing Script', cursive;
             font-size: 1.2rem;
-            color: #2c2416;
-            background: rgba(255,255,255,0.95);
-            border: 2px solid #8b7355;
+            color: #ffffff;
+            background: linear-gradient(135deg, #8b7355 0%, #7a634a 50%, #6b5540 100%);
+            border: 2px solid #654933;
             padding: 12px 20px;
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             pointer-events: auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 10;
+            box-shadow: 
+                0 4px 15px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            z-index: 15;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .map-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.05) 100%);
+            border-radius: 23px;
+            pointer-events: none;
         }
 
         .back-btn:hover, .map-btn:hover {
-            background: rgba(255,255,255,1);
+            background: linear-gradient(135deg, #a08563 0%, #8b7355 50%, #7a634a 100%);
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: 
+                0 6px 20px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.3),
+                inset 0 -1px 0 rgba(0,0,0,0.2);
+            border-color: #5a3e29;
+        }
+
+        .back-btn:active, .map-btn:active {
+            transform: scale(0.98);
+            box-shadow: 
+                0 2px 8px rgba(0,0,0,0.3),
+                inset 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .hope-message {
@@ -416,52 +593,7 @@
             }
         }
 
-        .weather-widget {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            background: rgba(212, 184, 150, 0.95);
-            border: 2px solid #8b7355;
-            border-radius: 12px;
-            padding: 12px;
-            font-family: 'Dancing Script', cursive;
-            color: #2c2416;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            max-width: 180px;
-        }
 
-        .weather-header {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            text-align: center;
-        }
-
-        .weather-info {
-            font-size: 0.95rem;
-            line-height: 1.3;
-            text-align: center;
-        }
-
-        .weather-temp {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #8b7355;
-        }
-
-        .weather-loading {
-            text-align: center;
-            font-style: italic;
-            opacity: 0.8;
-        }
-
-        .weather-error {
-            text-align: center;
-            font-size: 0.85rem;
-            color: #8b7355;
-        }
 
         /* Map Modal */
         .map-modal {
@@ -554,18 +686,68 @@
             }
 
             .click-hint {
-                font-size: 1.2rem;
-                bottom: -40px;
+                font-size: 1rem;
+                bottom: -35px;
+                max-width: 280px;
+                text-align: center;
+            }
+
+            .invitation-click-hint {
+                font-size: 1rem;
+                bottom: -50px;
+                max-width: 250px;
+                padding: 0 15px;
             }
             
             .title-card {
                 height: 450px;
                 max-width: 400px;
             }
+
+            .fallback-title .name {
+                font-size: 2.8rem;
+            }
+
+            .fallback-title .age {
+                font-size: 2rem;
+            }
+
+            .fallback-title .bday {
+                font-size: 2.8rem;
+                letter-spacing: 2px;
+            }
             
             .invitation {
                 min-height: 500px;
                 max-width: 400px;
+            }
+
+            .fallback-invitation .info-line {
+                font-size: 1.4rem;
+            }
+
+            .invitation-overlay {
+                bottom: 70px;
+            }
+
+            .attire-section {
+                flex-direction: column;
+                gap: 4px;
+                padding: 4px 8px;
+            }
+
+            .attire-text {
+                font-size: 0.8rem;
+            }
+
+            .inspo-btn {
+                font-size: 0.6rem;
+                padding: 2px 4px;
+            }
+
+            .inspo-btn {
+                font-size: 0.9rem;
+                padding: 5px 10px;
             }
 
             .continue-btn {
@@ -591,25 +773,6 @@
                 font-size: 1.2rem;
                 top: 15px;
                 padding: 10px 20px;
-            }
-
-            .weather-widget {
-                top: 10px;
-                right: 10px;
-                padding: 8px;
-                max-width: 150px;
-            }
-
-            .weather-header {
-                font-size: 1rem;
-            }
-
-            .weather-info {
-                font-size: 0.85rem;
-            }
-
-            .weather-temp {
-                font-size: 1.2rem;
             }
 
             .map-container {
@@ -645,6 +808,19 @@
                 height: 170px;
             }
 
+            .click-hint {
+                font-size: 0.9rem;
+                bottom: -30px;
+                max-width: 250px;
+            }
+
+            .invitation-click-hint {
+                font-size: 0.9rem;
+                bottom: -45px;
+                max-width: 220px;
+                padding: 0 10px;
+            }
+
             .title-card, .invitation {
                 max-width: 350px;
             }
@@ -653,18 +829,51 @@
                 height: 400px;
             }
 
+            .fallback-title .name {
+                font-size: 2.2rem;
+            }
+
+            .fallback-title .age {
+                font-size: 1.6rem;
+            }
+
+            .fallback-title .bday {
+                font-size: 2.2rem;
+                letter-spacing: 1px;
+            }
+
             .invitation {
                 min-height: 450px;
+            }
+
+            .fallback-invitation .info-line {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+
+            .fallback-invitation .attire {
+                font-size: 1rem;
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .inspo-btn {
+                font-size: 0.8rem;
+                padding: 4px 8px;
             }
 
             .back-btn {
                 bottom: 10px;
                 left: 10px;
+                font-size: 1rem;
+                padding: 8px 15px;
             }
 
             .map-btn {
                 bottom: 10px;
                 right: 10px;
+                font-size: 1rem;
+                padding: 8px 15px;
             }
 
             .hope-message {
@@ -673,18 +882,44 @@
                 padding: 8px 18px;
             }
         }
+
+        /* Very small screens */
+        @media (max-width: 360px) {
+            .click-hint {
+                font-size: 0.8rem;
+                max-width: 200px;
+            }
+
+            .invitation-click-hint {
+                font-size: 0.8rem;
+                max-width: 180px;
+            }
+
+            .fallback-invitation .info-line {
+                font-size: 1.1rem;
+            }
+
+            .fallback-invitation .attire {
+                font-size: 0.9rem;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .inspo-btn {
+                font-size: 0.7rem;
+                padding: 3px 6px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Weather Widget -->
-    <div class="weather-widget" id="weatherWidget">
-        <div class="weather-header">Party Day Weather</div>
-        <div class="weather-info" id="weatherInfo">
-            <div class="weather-loading">Loading weather...</div>
-        </div>
-    </div>
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop preload="auto" style="display: none;">
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-    <!-- Map Modal -->
+<!-- Map Modal -->
     <div class="map-modal" id="mapModal">
         <div class="map-container">
             <div class="map-close" id="mapClose">✕</div>
@@ -706,20 +941,45 @@
         <div class="envelope" id="envelope">
             <div class="envelope-flap"></div>
             <div class="envelope-body"></div>
-            <div class="click-hint">-Click to open invitation-</div>
+            <div class="click-hint">Click to open invitation</div>
         </div>
         
 
         <!-- Title Card (Image 2) -->
         <div class="title-card" id="titleCard">
-            <img class="title-image" src="2.png" alt="Brittany's 22nd Birthday Title" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #d4b896 0%, #c9a876 50%, #b8956a 100%)'; this.parentNode.innerHTML += '<div style=&quot;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Dancing Script, cursive; color: #2c2416;&quot;><div style=&quot;font-size: 3.5rem; margin-bottom: 10px;&quot;>Brittanys</div><div style=&quot;font-size: 2.5rem; margin-bottom: 15px;&quot;>22nd</div><div style=&quot;font-size: 3.5rem; font-family: Playfair Display, serif; font-weight: 900; letter-spacing: 4px;&quot;>BDAY</div></div>';">
+            <img class="title-image" 
+                 src="2.png" 
+                 alt="Brittany's 22nd Birthday Title" 
+                 onerror="this.style.display='none'; this.parentNode.innerHTML += '<div class=&quot;fallback-title&quot;><div class=&quot;name&quot;>Brittany\'s</div><div class=&quot;age&quot;>22nd</div><div class=&quot;bday&quot;>BIRTHDAY</div></div>';">
             <button class="continue-btn" id="continueBtn">View Details</button>
         </div>
-        <div class="invitation-click-hint">Click above to view invitation details</div>
+        <div class="invitation-click-hint">Tap above to view invitation details</div>
 
         <!-- Full Invitation (Image 3) -->
         <div class="invitation" id="invitation">
-            <img class="invitation-image" src="3.png" alt="Invitation Details" onerror="this.style.display='none'; this.parentNode.innerHTML += '<div style=&quot;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Dancing Script, cursive; color: #2c2416; width: 85%; padding: 20px;&quot;><div style=&quot;font-size: 1.8rem; margin-bottom: 15px;&quot;>When: June 7 - Saturday</div><div style=&quot;font-size: 1.8rem; margin-bottom: 15px;&quot;>Where: 3061 Fashion Ave, Long Beach, CA 90810</div><div style=&quot;font-size: 1.8rem; margin-bottom: 15px;&quot;>Time: Start 4:30 P.M, Food 6:30 P.M</div><div style=&quot;font-size: 1.4rem; font-style: italic; margin-bottom: 20px;&quot;>Mexican Western Attire Encouraged</div></div>';">
+            <img class="invitation-image" 
+                 src="3.png" 
+                 alt="Invitation Details" 
+                 onerror="this.style.display='none';">
+            
+            <!-- Always visible invitation overlay -->
+            <div class="invitation-overlay">
+                <div class="attire-section">
+                    <span class="attire-text">Mexican Western Attire Encouraged</span>
+                    <a href="https://www.google.com/search?q=mexican+western+attire+inspiration+outfit+ideas&tbm=isch" target="_blank" class="inspo-btn" onclick="event.stopPropagation();">Inspiration</a>
+                </div>
+            </div>
+            
+            <!-- Fallback content when image fails -->
+            <div class="fallback-invitation" style="display: none;">
+                <div class="info-line">When: June 7 - Saturday</div>
+                <div class="info-line">Where: 3061 Fashion Ave, Long Beach, CA 90810</div>
+                <div class="info-line">Time: Start 4:30 P.M, Food 6:30 P.M</div>
+                <div class="attire">
+                    <span>Mexican Western Attire Encouraged</span>
+                    <a href="https://www.google.com/search?q=mexican+western+attire+inspiration+outfit+ideas&tbm=isch" target="_blank" class="inspo-btn">✨ Inspo</a>
+                </div>
+            </div>
             
             <div class="hope-message">
                 Hope to see you there
@@ -740,56 +1000,39 @@
         const mapBtn = document.getElementById('mapBtn');
         const mapModal = document.getElementById('mapModal');
         const mapClose = document.getElementById('mapClose');
-        const weatherWidget = document.getElementById('weatherWidget');
-        const weatherInfo = document.getElementById('weatherInfo');
+        const backgroundMusic = document.getElementById('backgroundMusic');
         
         let currentState = 'envelope'; // envelope, title, details
 
-        // Weather API function
-        async function loadWeather() {
-            try {
-                // Using OpenWeatherMap API for Long Beach, CA
-                const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Long Beach,CA,US&appid=demo&units=imperial');
-                
-                // Fallback weather data if API fails
-                if (!response.ok) {
-                    throw new Error('Weather API unavailable');
-                }
-                
-                const data = await response.json();
-                const temp = Math.round(data.main.temp);
-                const description = data.weather[0].description;
-                const icon = getWeatherIcon(data.weather[0].main);
-                
-                weatherInfo.innerHTML = `
-                    <div class="weather-temp">${temp}°F</div>
-                    <div>${icon} ${description}</div>
-                    <div style="font-size: 0.8rem; margin-top: 5px;">Long Beach, CA</div>
-                `;
-            } catch (error) {
-                // Fallback weather display
-                weatherInfo.innerHTML = `
-                    <div class="weather-temp">72°F</div>
-                    <div>☀️ Sunny</div>
-                    <div style="font-size: 0.8rem; margin-top: 5px;">Long Beach, CA</div>
-                    <div class="weather-error">(Estimated)</div>
-                `;
+        // Initialize background music
+        function initializeMusic() {
+            if (backgroundMusic) {
+                backgroundMusic.volume = 0.10; // Low volume (15%)
+                backgroundMusic.play().catch(function(error) {
+                    // Auto-play might be blocked by browser, that's okay
+                    console.log('Auto-play prevented:', error);
+                });
             }
         }
 
-        function getWeatherIcon(weather) {
-            const icons = {
-                'Clear': '☀️',
-                'Clouds': '☁️',
-                'Rain': '🌧️',
-                'Drizzle': '🌦️',
-                'Thunderstorm': '⛈️',
-                'Snow': '❄️',
-                'Mist': '🌫️',
-                'Fog': '🌫️'
-            };
-            return icons[weather] || '🌤️';
+        // Start music on first user interaction
+        function startMusicOnInteraction() {
+            if (backgroundMusic && backgroundMusic.paused) {
+                backgroundMusic.play().catch(function(error) {
+                    console.log('Music play failed:', error);
+                });
+            }
+            // Remove this listener after first interaction
+            document.removeEventListener('click', startMusicOnInteraction);
+            document.removeEventListener('touchstart', startMusicOnInteraction);
         }
+
+        // Add listeners for first user interaction
+        document.addEventListener('click', startMusicOnInteraction);
+        document.addEventListener('touchstart', startMusicOnInteraction);
+
+        // Initialize music when page loads
+        window.addEventListener('load', initializeMusic);
 
         // Map functionality - Fixed for mobile
         function openMap(e) {
@@ -823,26 +1066,24 @@
             }
         });
 
-        // Load weather when page loads
-        loadWeather();
-
-        // Create floating particles
+        // Create floating particles with better mobile performance
         function createParticles() {
-            const particleTypes = ['hat', 'cowboy'];
+            const isMobile = window.innerWidth <= 768;
+            const particleCount = isMobile ? 4 : 8; // Fewer particles on mobile
             
-            for (let i = 0; i < 8; i++) { // Reduced for mobile performance
+            for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
-                const type = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+                const type = Math.random() > 0.5 ? 'hat' : 'cowboy';
                 particle.className = `particle ${type}`;
                 
-                // Start particles at random positions throughout the screen
+                // Start particles at random positions
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + 'vh';
                 
-                // Stagger animation delays to have continuous floating
+                // Stagger animation delays
                 particle.style.animationDelay = (Math.random() * 20) + 's';
                 
-                const size = Math.random() * 20 + 30; // Smaller for mobile
+                const size = Math.random() * 15 + (isMobile ? 25 : 30);
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
@@ -853,7 +1094,15 @@
         // Initialize particles
         createParticles();
 
+        // Touch and click event handlers
         envelope.addEventListener('click', function() {
+            if (currentState === 'envelope') {
+                openEnvelope();
+            }
+        });
+
+        envelope.addEventListener('touchend', function(e) {
+            e.preventDefault();
             if (currentState === 'envelope') {
                 openEnvelope();
             }
@@ -867,7 +1116,23 @@
             }
         });
 
+        continueBtn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (currentState === 'title') {
+                showInvitation();
+            }
+        });
+
         backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (currentState === 'details') {
+                showTitle();
+            }
+        });
+
+        backBtn.addEventListener('touchend', function(e) {
             e.preventDefault();
             e.stopPropagation();
             if (currentState === 'details') {
@@ -917,6 +1182,31 @@
                 }
             });
         }
+
+        // Handle window resize for responsive design
+        window.addEventListener('resize', function() {
+            // Recreate particles on resize for better performance
+            particles.innerHTML = '';
+            createParticles();
+        });
+
+        // Handle image load/error for fallback content
+        const invitationImage = document.querySelector('.invitation-image');
+        const fallbackInvitation = document.querySelector('.fallback-invitation');
+        
+        if (invitationImage) {
+            invitationImage.addEventListener('error', function() {
+                fallbackInvitation.style.display = 'block';
+            });
+        }
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
